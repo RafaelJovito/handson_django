@@ -1,4 +1,4 @@
-from django.db.models import Model, CharField, ForeignKey, CASCADE
+from django.db.models import Model, CharField, ForeignKey, CASCADE, DateTimeField
 
 # Create your models here.
 
@@ -26,3 +26,22 @@ class Municipio(Model):
 
     def __str__(self):
         return "%s (%s)" % (self.nome, self.uf)
+
+
+class Edital(Model):
+    tipo = CharField("Tipo", max_length=50, null=False, blank=False)
+    programa = CharField("Programa", max_length=255, null=False, blank=False)
+    numero = CharField("Numero", max_length=50, null=False, blank=False)
+    sigla = CharField("Sigla", max_length=50, null=False, blank=False)
+    linkEdital = CharField("LinkEdital", max_length=50, null=False, blank=False)
+    descricao = CharField("Descricao", max_length=255, null=False, blank=False)
+    ano = DateTimeField('Ano', auto_now=True)
+    periodo = DateTimeField('Periodo', auto_now=True)
+    
+    class Meta:
+        verbose_name = "Edital"
+        verbose_name_plural = "Editais"
+
+    def __str__(self):
+        return self.tipo
+
